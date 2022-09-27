@@ -1,55 +1,78 @@
-package gestion;
+package zooAnimales;
 
-import zooAnimales.Animal;
+import gestion.Zona;
 
 import java.util.ArrayList;
 
-public class Zona {
-
+public class Reptil extends Animal{
     // Atributos
-    private String nombre;
-    private Zoologico zoo;
-    private ArrayList<Animal> animales = new ArrayList<Animal>();
+    private static ArrayList<Reptil> listado = new ArrayList<Reptil>();
+    public static int iguanas;
+    public static int serpientes;
+    private String colorEscamas;
+    private int largoCola;
+    public static int reptiles;
 
 
     // Constructores
 
-    public Zona(String nombre, Zoologico zoo){
-        this.nombre = nombre;
-        this.zoo = zoo;
+    public Reptil(String nombre, int edad, String habitat, String genero, String colorEscamas, int largoCola) {
+        super(nombre, edad, habitat, genero);
+        this.colorEscamas = colorEscamas;
+        this.largoCola = largoCola;
+        listado.add(this);
+        reptiles++;
     }
 
-    public Zona(){}
-
-    // Getter and Setter
-
-    public String getNombre() {
-        return nombre;
+    public Reptil(){
+        listado.add(this);
+        reptiles++;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    // Getter & Setter
+
+    public ArrayList<Reptil> getListado() {
+        return listado;
     }
 
-    public Zoologico getZoo() {
-        return zoo;
+    public String getColorEscamas() {
+        return colorEscamas;
     }
 
-    public void setZoo(Zoologico zoo) {
-        this.zoo = zoo;
+    public void setColorEscamas(String colorEscamas) {
+        this.colorEscamas = colorEscamas;
     }
 
-    public ArrayList<Animal> getAnimales() {
-        return animales;
-    }
-    //Metodos
-
-    public void agregarAnimales(Animal animal){
-        animales.add(animal);
+    public int getLargoCola() {
+        return largoCola;
     }
 
-    public int cantidadAnimales(){
-        return animales.size();
+    public void setLargoCola(int largoCola) {
+        this.largoCola = largoCola;
+    }
+
+
+    // Metodos
+
+    public static int cantidadReptiles(){
+        return reptiles;
+
+    }
+
+    public String movimiento(){
+
+        return "reptar";
+    }
+
+    public static Reptil crearIguana(String nombre, int edad, String genero){
+        Reptil.iguanas++;
+        return new Reptil(nombre, edad, "humedal", genero, "verde", 3);
+
+    }
+
+    public static Reptil crearSerpiente(String nombre, int edad, String genero){
+        Reptil.serpientes++;
+        return new Reptil(nombre, edad, "jungla", genero, "blanco", 1);
     }
 
 }

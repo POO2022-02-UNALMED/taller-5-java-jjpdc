@@ -1,55 +1,79 @@
-package gestion;
+package zooAnimales;
 
-import zooAnimales.Animal;
+import gestion.Zona;
 
 import java.util.ArrayList;
 
-public class Zona {
-
+public class Pez extends Animal{
     // Atributos
-    private String nombre;
-    private Zoologico zoo;
-    private ArrayList<Animal> animales = new ArrayList<Animal>();
+    private static ArrayList<Pez> listado = new ArrayList<Pez>();
+    public static int salmones;
+    public static int bacalaos;
+    private String colorEscamas;
+    private int cantidadAletas;
+
+    public static int peces;
 
 
     // Constructores
 
-    public Zona(String nombre, Zoologico zoo){
-        this.nombre = nombre;
-        this.zoo = zoo;
+    public Pez(String nombre, int edad, String habitat, String genero, String colorEscamas, int cantidadAletas) {
+        super(nombre, edad, habitat, genero);
+        this.colorEscamas = colorEscamas;
+        this.cantidadAletas = cantidadAletas;
+        listado.add(this);
+        peces++;
     }
 
-    public Zona(){}
-
-    // Getter and Setter
-
-    public String getNombre() {
-        return nombre;
+    public Pez(){
+        listado.add(this);
+        peces++;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    // Getter & Setter
+
+
+    public ArrayList<Pez> getListado() {
+        return listado;
     }
 
-    public Zoologico getZoo() {
-        return zoo;
+    public String getColorEscamas() {
+        return colorEscamas;
     }
 
-    public void setZoo(Zoologico zoo) {
-        this.zoo = zoo;
+    public void setColorEscamas(String colorEscamas) {
+        this.colorEscamas = colorEscamas;
     }
 
-    public ArrayList<Animal> getAnimales() {
-        return animales;
-    }
-    //Metodos
-
-    public void agregarAnimales(Animal animal){
-        animales.add(animal);
+    public int getCantidadAletas() {
+        return cantidadAletas;
     }
 
-    public int cantidadAnimales(){
-        return animales.size();
+    public void setCantidadAletas(int cantidadAletas) {
+        this.cantidadAletas = cantidadAletas;
+    }
+
+
+    // Metodos
+
+    public static int cantidadPeces(){
+        return peces;
+
+    }
+
+    public String movimiento(){
+
+        return "nadar";
+    }
+
+    public static Pez crearSalmon(String nombre, int edad, String genero){
+        Pez.salmones++;
+        return new Pez(nombre, edad, "oceano", genero, "rojo", 6);
+    }
+
+    public static Pez crearBacalao(String nombre, int edad, String genero){
+        Pez.bacalaos++;
+        return new Pez(nombre, edad, "oceano", genero, "gris", 6);
     }
 
 }
